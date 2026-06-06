@@ -1,6 +1,7 @@
 using CommandsService.AsyncDataServices;
 using CommandsService.Data;
 using CommandsService.EventProcessing;
+using CommandsService.SyncDataServices.Grpc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,7 @@ builder.Services.AddHostedService<MessageBusSubscriber>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); // AutoMapper configuration, what it does is it automatically maps the data from one object to another object
 
+builder.Services.AddScoped<IPlatformDataClient, PlatformDataClient>();
 
 var app = builder.Build();
 
@@ -35,6 +37,8 @@ if (app.Environment.IsDevelopment())
 // app.UseHttpsRedirection(); // Commented out for local development
 
 app.MapControllers(); // Wire up controller routes
+
+PrepDb.PrepPopulation(app);
 
 var summaries = new[]
 {

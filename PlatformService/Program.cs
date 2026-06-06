@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlatformService.AsyncDataServices;
 using PlatformService.Data;
+using PlatformService.SyncDataServices.Grpc;
 using PlatformService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,8 @@ builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 
 builder.Services.AddSingleton<IMessageBusClient, MessageBusClient>();
 
+builder.Services.AddGrpc();
+
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); // AutoMapper configuration, what it does is it automatically maps the data from one object to another object
@@ -39,6 +42,12 @@ PrepDb.PrepopulateDb(app, env.IsProduction());
 
 app.MapGet("/", () => "Hello World!");
 app.MapControllers(); // Wire up controller routes
+app.MapGrpcService<GrpcPlatformService>(); // Wire up gRPC service
+
+app.MapGet("/protos/platforms.proto", (context) =>
+{
+    return context.Response.WriteAsync(File.ReadAllText("protos/platforms.proto"));
+});
 
 app.Run();
 

@@ -112,3 +112,8 @@ C:\Users\f-ologunebi\Desktop\mydev\tuts\ThePlatform\CommandsService\obj\Debug\ne
 C:\Users\f-ologunebi\Desktop\mydev\tuts\ThePlatform\CommandsService\obj\Debug\net8.0\ref\CommandsService.dll
 C:\Users\f-ologunebi\Desktop\mydev\tuts\ThePlatform\CommandsService\bin\Debug\net8.0\appsettings.Production.json
 C:\Users\f-ologunebi\Desktop\mydev\tuts\ThePlatform\CommandsService\bin\Debug\net8.0\RabbitMQ.Client.dll
+C:\Users\f-ologunebi\Desktop\mydev\tuts\ThePlatform\CommandsService\bin\Debug\net8.0\Google.Protobuf.dll
+C:\Users\f-ologunebi\Desktop\mydev\tuts\ThePlatform\CommandsService\bin\Debug\net8.0\Grpc.Core.Api.dll
+C:\Users\f-ologunebi\Desktop\mydev\tuts\ThePlatform\CommandsService\bin\Debug\net8.0\Grpc.Net.Client.dll
+C:\Users\f-ologunebi\Desktop\mydev\tuts\ThePlatform\CommandsService\bin\Debug\net8.0\Grpc.Net.Common.dll
+C:\Users\f-ologunebi\Desktop\mydev\tuts\ThePlatform\CommandsService\obj\Debug\net8.0\CommandsService.sourcelink.json
