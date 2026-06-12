@@ -22,7 +22,20 @@ namespace CommandsService.SyncDataServices.Grpc
         {
             var grpcPlatform = _config["GrpcPlatform"] ?? throw new InvalidOperationException("GrpcPlatform configuration is missing");
             Console.WriteLine($"--> Calling GRPC Service {grpcPlatform}");
-            var channel = GrpcChannel.ForAddress(grpcPlatform);
+
+            // var channel = GrpcChannel.ForAddress(grpcPlatform);
+
+            var httpHandler = new HttpClientHandler();
+            // Ignore certificate validation for development - ONLY for development!
+            httpHandler.ServerCertificateCustomValidationCallback =
+                HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+            var channel = GrpcChannel.ForAddress(grpcPlatform, new GrpcChannelOptions
+            {
+                HttpHandler = httpHandler
+            });
+
+            
             var client = new GrpcPlatform.GrpcPlatformClient(channel);
             var request = new GetAllRequest();
 
